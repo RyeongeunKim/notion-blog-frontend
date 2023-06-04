@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         children: [
           // { index: true, element: <PostsPage />, loader: eventsLoader },
           { index: true, element: <PostsPage /> },
-          { path: ":someId", element: <PostDetailPage /> },
+          { path: ":postId", element: <PostDetailPage /> },
         ],
       },
     ],
