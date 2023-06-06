@@ -1,11 +1,11 @@
-import PostsList from "../components/PostsList";
+import PostList from "../components/PostList";
 
 function PostsPage() {
-    return (
-        <div>
-            <PostsList />
-        </div>
-    )
+  return (
+    <div>
+      <PostList />
+    </div>
+  );
 }
 
 export default PostsPage;

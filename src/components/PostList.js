@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-import classes from "./PostsList.module.css";
+import classes from "./PostList.module.css";
 
-function PostsList(props) {
+function PostList(props) {
   return (
     <div>
       <h2>All Posts</h2>
@@ -18,4 +18,4 @@ function PostsList(props) {
   );
 }
 
-export default PostsList;
+export default PostList;
