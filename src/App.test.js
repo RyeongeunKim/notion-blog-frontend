@@ -4,7 +4,7 @@ import routesConfig from "./routes/routesConfig";
 import userEvent from "@testing-library/user-event";
 
 describe("App component", () => {
-  test("최초 페이지 접속 시 / 경로로 이동하며 HomePage가 렌더링된다.", async () => {
+  test("최초 페이지 접속 시 / 경로이며 HomePage가 렌더링된다.", async () => {
     const router = createMemoryRouter(routesConfig, {
       initialEntries: ["/"],
     });
