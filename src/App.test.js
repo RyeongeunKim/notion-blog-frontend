@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import routesConfig from "./routes/routesConfig";
 
 describe("App component", () => {
-  test("최초 페이지는 / 경로이다.", async () => {
+  test("최초 페이지 접속 시 / 경로로 이동한다.", async () => {
     const router = createMemoryRouter(routesConfig, {
       initialEntries: ["/"],
     });
