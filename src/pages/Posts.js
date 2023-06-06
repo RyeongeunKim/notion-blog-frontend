@@ -40,12 +40,6 @@ async function loadEvents() {
     // );
   } else {
     const resData = await response.json();
-    const sortData = resData.results.sort(function (a, b) {
-      return a.created_time - b.created_time;
-    });
-
-    console.log("sortData = ", sortData);
-
     return resData.results;
   }
 }
