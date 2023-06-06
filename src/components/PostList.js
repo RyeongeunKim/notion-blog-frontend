@@ -5,7 +5,6 @@ import classes from "./PostList.module.css";
 function PostList(props) {
   return (
     <div>
-      <h2>All Posts</h2>
       <ul className={classes.list}>
         <li>
           <Link to={`0`}>글 제목 (1)</Link>
