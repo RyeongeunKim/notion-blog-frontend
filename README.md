@@ -1,5 +1,7 @@
 # notion-blog-frontend
 
+> Notion API 를 이용한 개인블로그
+
 ![ezgif com-video-to-gif (2)](https://github.com/RyeongeunKim/notion-blog-frontend/assets/80612679/43f51e1d-eacb-4a32-8fd2-7230edd83ac8)
 
 ## 테스트 명세서
