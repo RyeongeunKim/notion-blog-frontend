@@ -10,28 +10,6 @@ import routesConfig from "./routes/routesConfig";
 
 const router = createBrowserRouter(routesConfig);
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <RootLayout />,
-//     children: [
-//       {
-//         index: true,
-//         element: <HomePage />,
-//       },
-//       {
-//         path: "posts",
-//         element: <PostsRootLayout />,
-//         children: [
-//           // { index: true, element: <PostsPage />, loader: eventsLoader },
-//           { index: true, element: <PostsPage /> },
-//           { path: ":postId", element: <PostDetailPage /> },
-//         ],
-//       },
-//     ],
-//   },
-// ]);
-
 function App() {
   return <RouterProvider router={router} />;
 }
