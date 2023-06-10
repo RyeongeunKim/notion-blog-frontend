@@ -1,10 +1,12 @@
 import { Suspense } from "react";
-import { useLoaderData, json, defer, Await } from "react-router-dom";
+import { defer, Await, json, useRouteLoaderData } from "react-router-dom";
 
 import PostList from "../components/PostList";
 
 function PostsPage() {
-  const { posts } = useLoaderData();
+  const { posts } = useRouteLoaderData("posts");
+
+  console.log(posts);
 
   return (
     <Suspense fallback={<p>Loading...</p>}>
@@ -20,24 +22,17 @@ export default PostsPage;
 async function loadEvents() {
   const database_id = process.env.REACT_APP_NOTION_DATABASE_ID;
 
-  const response = await fetch("http://localhost:3002/" + database_id, {
+  const response = await fetch("http://localhost:3002/posts/" + database_id, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
   });
 
   if (!response.ok) {
-    // return { isError: true, message: 'Could not fetch events.' };
-    // throw new Response(JSON.stringify({ message: 'Could not fetch events.' }), {
-    //   status: 500,
-    // });
-    // throw json(
-    //   { message: "Could not fetch events." },
-    //   {
-    //     status: 500,
-    //   }
-    // );
+    throw json(
+      { message: "Could not fetch posts." },
+      {
+        status: 500,
+      }
+    );
   } else {
     const resData = await response.json();
     return resData.results;

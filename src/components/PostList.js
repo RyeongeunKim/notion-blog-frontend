@@ -8,7 +8,9 @@ function PostList({ posts }) {
       <ul className={classes.list}>
         {posts.map((post, index) => (
           <li key={post.id}>
-            <Link to={`${post.id}`}>{posts[index].properties["이름"].title[0].plain_text}</Link>
+            <Link to={`${post.id}`}>
+              {posts[index].properties["이름"].title[0].plain_text}
+            </Link>
           </li>
         ))}
       </ul>
