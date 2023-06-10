@@ -11,7 +11,7 @@ describe("App component", () => {
 
     render(<RouterProvider router={router} />);
 
-    const outputElement = screen.getByText("HomePage", { exact: false });
+    const outputElement = screen.getByRole("heading", { name: "HomePage" });
     expect(outputElement).toBeInTheDocument();
   });
   test("/ 에서 Home, Posts GNB 메뉴가 렌더링된다.", async () => {
