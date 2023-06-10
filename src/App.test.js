@@ -14,7 +14,7 @@ describe("App component", () => {
     const outputElement = screen.getByText("HomePage", { exact: false });
     expect(outputElement).toBeInTheDocument();
   });
-  test("최초 페이지 접속 시 Home, Posts GNB 메뉴가 렌더링된다.", async () => {
+  test("/ 에서 Home, Posts GNB 메뉴가 렌더링된다.", async () => {
     const router = createMemoryRouter(routesConfig, {
       initialEntries: ["/"],
     });
@@ -33,7 +33,7 @@ describe("App component", () => {
 
     expect(postsLinkElement).toBeInTheDocument();
   });
-  test("Posts(GNB) 메뉴를 클릭하면 /posts 경로로 이동하고 All Posts(LNB) 메뉴가 렌더링된다.", async () => {
+  test("Posts 메뉴를 클릭하면 /posts 경로로 이동하고 All Posts(LNB) 메뉴가 렌더링된다.", async () => {
     const router = createMemoryRouter(routesConfig, {
       initialEntries: ["/posts"],
     });
