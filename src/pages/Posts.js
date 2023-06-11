@@ -6,8 +6,6 @@ import PostList from "../components/PostList";
 function PostsPage() {
   const { posts } = useRouteLoaderData("posts");
 
-  console.log(posts);
-
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <Await resolve={posts}>

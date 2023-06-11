@@ -5,21 +5,15 @@ import { Await, json, defer, useLoaderData, useRouteLoaderData } from "react-rou
 import PostItem from "../components/PostItem";
 
 function PostDetailPage() {
-  const { post } = useLoaderData();
+  const { blocks } = useLoaderData();
 
   return (
     <Suspense fallback={<p>Loading...</p>}>
-      <Await resolve={post}>
-        {(loadedPost) => <PostItem post={loadedPost} />}
+      <Await resolve={blocks}>
+        {(loadedPost) => <PostItem blocks={loadedPost} />}
       </Await>
     </Suspense>
   );
-  // return (
-  //   <div>
-  //     <h1>PostDetailPage</h1>
-  //     {/* <p>Post ID: {params.postId}</p> */}
-  //   </div>
-  // );
 }
 
 export default PostDetailPage;
@@ -45,6 +39,6 @@ export async function loader({ request, params }) {
   const id = params.postId;
 
   return defer({
-    post: await loadPost(id),
+    blocks: await loadPost(id),
   });
 }

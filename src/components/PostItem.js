@@ -1,37 +1,55 @@
 import { useEffect, useState } from "react";
 
-import { useRouteLoaderData } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-function PostItem({ post }) {
-  const { posts } = useRouteLoaderData("posts");
-  const [postItems, setPostItems] = useState([]);
+function PostItem({ blocks }) {
+  const {
+    state: { title },
+  } = useLocation();
+
+  const [contents, setContents] = useState([]);
 
   useEffect(() => {
-    if (!post.length) return;
+    let contents = [];
 
-    console.log(posts);
+    if (blocks.length) {
+      blocks.forEach((item) => {
+        let id = item.id;
+        let richTexts = [];
+        let plainText = "";
+        let content;
 
-    if (post.length > 1) {
-      post.forEach((item) => {
-        console.log(item);
-        if ("numbered_list_item" in item) {
-          if (item.numbered_list_item.rich_text.length) {
-            console.log(item.numbered_list_item.rich_text[0].plain_text);
-          }
-        } else if ("paragraph" in item) {
-          if (item.paragraph.rich_text.length) {
-            console.log(item.paragraph.rich_text[0].plain_text);
-          }
+        if (item.type === "paragraph") {
+          richTexts = item.paragraph.rich_text;
+        } else if (item.type === "numbered_list_item") {
+          richTexts = item.numbered_list_item.rich_text;
+        }
+
+        if (richTexts.length) {
+          plainText = richTexts[0].plain_text;
+        }
+
+        if (plainText) {
+          content = { id, plainText };
+          contents.push(content);
         }
       });
-    } else {
-      console.log(post[0].paragraph.rich_text);
     }
+
+    setContents(contents);
   }, []);
+
   return (
-    <>
-      <h1>PostItem</h1>
-    </>
+    <div>
+      <h3>{title}</h3>
+      <ul>
+        {contents.length ? (
+          contents.map(({ id, plainText }) => <li key={id}>{plainText}</li>)
+        ) : (
+          <p>글 내용이 없습니다</p>
+        )}
+      </ul>
+    </div>
   );
 }
 
