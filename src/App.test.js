@@ -53,25 +53,31 @@ describe("App component", () => {
     const listItemElements = await screen.findAllByRole("listitem");
     expect(listItemElements).not.toHaveLength(0);
   });
-  test("/posts 에서 글 제목 (1) 클릭하면 /posts/:postId 경로로 이동하고 postId가 렌더링 된다.", async () => {
+  test("/posts 에서 글 제목 (1) 클릭하면 /posts/:postId 경로로 이동하고 선택한 글 제목 및 내용이 렌더링 된다.", async () => {
     const router = createMemoryRouter(routesConfig, {
       initialEntries: ["/posts"],
     });
 
     render(<RouterProvider router={router} />);
 
-    const linkElement = await screen.findByText("글 제목 (1)", { exact: true });
+    const linkElement = await screen.findByRole(
+      "link",
+      {
+        name: "글 제목 (1)",
+      },
+      { timeout: 8000 }
+    );
 
     userEvent.click(linkElement);
 
-    const outputPageNameElement = screen.getByText("PostDetailPage", {
-      exact: false,
-    });
-    expect(outputPageNameElement).toBeInTheDocument();
+    const outputPageTitleElement = screen.getAllByText("글 제목 (1)");
+    expect(outputPageTitleElement).not.toHaveLength(0);
 
-    const outputContentElement = await screen.findByText("Post ID", {
-      exact: false,
-    });
-    expect(outputContentElement).toBeInTheDocument();
+    const outputPageContentsElement = await screen.findAllByText(
+      "내용",
+      { exact: false },
+      { timeout: 8000 }
+    );
+    expect(outputPageContentsElement).not.toHaveLength(0);
   });
 });

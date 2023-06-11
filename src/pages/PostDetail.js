@@ -1,6 +1,5 @@
-import { Suspense, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Await, json, defer, useLoaderData, useRouteLoaderData } from "react-router-dom";
+import { Suspense } from "react";
+import { Await, json, defer, useLoaderData } from "react-router-dom";
 
 import PostItem from "../components/PostItem";
 
