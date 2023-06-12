@@ -1,25 +1,27 @@
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import routesConfig from "./routes/routesConfig";
 import userEvent from "@testing-library/user-event";
 
 describe("App component", () => {
-  test("최초 페이지 접속 시 / 경로이며 HomePage가 렌더링된다.", async () => {
+  const setupRouter = (initialPath = "/") => {
     const router = createMemoryRouter(routesConfig, {
-      initialEntries: ["/"],
+      initialEntries: [initialPath],
     });
 
     render(<RouterProvider router={router} />);
+
+    return { router };
+  };
+
+  test("최초 페이지 접속 시 / 경로이며 HomePage가 렌더링된다.", async () => {
+    setupRouter("/");
 
     const outputElement = screen.getByRole("heading", { name: "HomePage" });
     expect(outputElement).toBeInTheDocument();
   });
   test("/ 에서 Home, Posts GNB 메뉴가 렌더링된다.", async () => {
-    const router = createMemoryRouter(routesConfig, {
-      initialEntries: ["/"],
-    });
-
-    render(<RouterProvider router={router} />);
+    setupRouter("/");
 
     const homeLinkElement = await screen.findByRole("link", {
       name: "Home",
