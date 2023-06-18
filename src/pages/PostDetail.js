@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Await, json, defer, useLoaderData } from "react-router-dom";
 
-import PostItem from "../components/PostItem";
+import PostItem from "../components/Posts/PostItem";
 
 function PostDetailPage() {
   const { blocks } = useLoaderData();

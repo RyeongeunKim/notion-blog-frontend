@@ -6,5 +6,4 @@
 .list a:hover,
 .list a.active {
   color: gray;
-  /* color: var(--color-primary-800); */
 }

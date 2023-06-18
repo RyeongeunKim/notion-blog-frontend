@@ -1,0 +1,35 @@
+a {
+  text-decoration: underline;
+  color: gray;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.strikethrough {
+  text-decoration-line: line-through;
+}
+
+.underline {
+  text-decoration-line: underline;
+}
+
+.code {
+  line-height: 1.2em;
+  background: linear-gradient(180deg, #ededeb 0, #ededeb 1.2em, #dddddd 0);
+  background-size: 2.4em 2.4em;
+  background-origin: content-box;
+  display: inline-block;
+  border-radius: 5px;
+
+  /* some extra styles*/
+  padding: 0 10px;
+  text-align: justify;
+  font-family: calibri, arial, sans-serif;
+  color: #d44c47;
+}
