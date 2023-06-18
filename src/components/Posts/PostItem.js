@@ -13,6 +13,7 @@ function PostItem({ blocks }) {
     let contents = [];
 
     if (blocks.length) {
+      console.log("blocks = ", blocks);
       blocks.forEach((item) => {
         let id = item.id;
         let richTexts = [];

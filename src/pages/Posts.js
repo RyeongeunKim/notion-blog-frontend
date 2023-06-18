@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { defer, Await, json, useRouteLoaderData } from "react-router-dom";
 
-import PostList from "../components/PostList";
+import PostList from "../components/Posts/PostList";
 
 function PostsPage() {
   const { posts } = useRouteLoaderData("posts");
