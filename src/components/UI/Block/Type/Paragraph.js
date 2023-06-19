@@ -4,15 +4,16 @@ import Text from "./RichText/Text";
 
 function Paragraph(props) {
   const { id, richTexts } = props;
+  console.log("Paragraph = ", props);
 
   const getCompoent = (type, richText, index) => {
     switch (type) {
       case "text":
-        return <Text id={`${id}${index}`} richText={richText} />;
+        return <Text id={id} richText={richText} />;
       case "Mention":
-        return <Mention id={`${id}${index}`} richText={richText} />;
+        return <Mention id={id} richText={richText} />;
       case "equation":
-        return <Equation id={`${id}${index}`} richText={richText} />;
+        return <Equation id={id} richText={richText} />;
       default:
         return;
     }
@@ -22,7 +23,8 @@ function Paragraph(props) {
     getCompoent(item.type, item, index)
   );
 
-  return <div key={id}>{!richTexts.length ? <br /> : richText}</div>;
+  return !richTexts.length ? <br /> : richText;
+  // return <div key={id}>{!richTexts.length ? <br /> : richText}</div>;
 }
 
 export default Paragraph;
