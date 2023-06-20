@@ -4,30 +4,21 @@ function Block(props) {
   const { blocks } = props;
   const headingRegex = new RegExp("heading*");
 
-  // const getCompoent = (type, item) => {
-  //   const headingRegex = new RegExp("heading*");
-  //   if (headingRegex.test(type)) {
-  //     console.log("이것은 헤딩입니다 = ", type);
-  //   }
-  //   if (type === "paragraph") {
-  //     return <Paragraph id={item.id} richTexts={item.paragraph.rich_text} />;
-  //   }
-  // };
+  const getCompoent = (id, type, item) => {
+    let compoent = null;
 
-  // const block = blocks.map((item) => getCompoent(item.type, item));
+    if (headingRegex.test(type)) {
+      console.log("이것은 헤딩입니다 = ", type);
+    } else if (type === "paragraph") {
+      compoent = (
+        <Paragraph id={item.id} richTexts={item.paragraph.rich_text} />
+      );
+    }
 
-  return (
-    <>
-      {blocks.map((item) =>
-        headingRegex.test(item.type) ? (
-          <div key={item.id}>헤딩</div>
-        ) : item.type === "paragraph" ? (
-          <Paragraph id={item.id} richTexts={item.paragraph.rich_text} />
-        ) : null
-      )}
-    </>
-  );
-  // return <div>{block}</div>;
+    return compoent ? <div key={id}>{compoent}</div> : null;
+  };
+
+  return <>{blocks.map((item) => getCompoent(item.id, item.type, item))}</>;
 }
 
 export default Block;

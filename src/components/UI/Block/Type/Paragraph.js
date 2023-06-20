@@ -1,30 +1,33 @@
+import { Fragment } from "react";
 import Equation from "./RichText/Equation";
 import Mention from "./RichText/Mention";
 import Text from "./RichText/Text";
 
 function Paragraph(props) {
   const { id, richTexts } = props;
-  console.log("Paragraph = ", props);
 
-  const getCompoent = (type, richText, index) => {
-    switch (type) {
-      case "text":
-        return <Text id={id} richText={richText} />;
-      case "Mention":
-        return <Mention id={id} richText={richText} />;
-      case "equation":
-        return <Equation id={id} richText={richText} />;
-      default:
-        return;
+  const getCompoent = (type, richText) => {
+    let compoent = null;
+
+    if (type === "Mention") {
+      compoent = <Mention id={id} richText={richText} />;
+    } else if (type === "equation") {
+      compoent = <Equation id={id} richText={richText} />;
+    } else if (type === "text") {
+      compoent = <Text richText={richText} />;
     }
+
+    return compoent ? <div key={id}>{compoent}</div> : null;
   };
-
-  const richText = richTexts.map((item, index) =>
-    getCompoent(item.type, item, index)
+  return (
+    <>
+      {richTexts.length ? (
+        richTexts.map((item) => getCompoent(item.type, item))
+      ) : (
+        <br />
+      )}
+    </>
   );
-
-  return !richTexts.length ? <br /> : richText;
-  // return <div key={id}>{!richTexts.length ? <br /> : richText}</div>;
 }
 
 export default Paragraph;
