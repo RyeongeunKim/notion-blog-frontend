@@ -19,6 +19,7 @@ function Paragraph(props) {
 
     return compoent ? <div key={id}>{compoent}</div> : null;
   };
+
   return (
     <>
       {richTexts.length ? (
