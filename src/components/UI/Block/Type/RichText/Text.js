@@ -1,11 +1,14 @@
+import { Fragment } from "react";
 import { useEffect, useState } from "react";
 
 import classes from "./Text.module.css";
 
 function Text(props) {
   const {
-    richText: { id, annotations, href, plain_text, text },
+    richText: { annotations, href, plain_text, text },
   } = props;
+
+  // console.log("text = ", props);
 
   const [style, setStyle] = useState({
     name: "",
@@ -37,7 +40,7 @@ function Text(props) {
   }, []);
 
   return (
-    <div key={id}>
+    <>
       {href ? (
         <a href={href} target="_blank" rel="noopener noreferrer">
           {plain_text}
@@ -49,7 +52,7 @@ function Text(props) {
       ) : (
         <div className={style.name}>{plain_text}</div>
       )}
-    </div>
+    </>
   );
 }
 
