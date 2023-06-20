@@ -1,4 +1,5 @@
 import Paragraph from "./Type/Paragraph";
+import Heading from "./Type/Heading";
 
 function Block(props) {
   const { blocks } = props;
@@ -8,7 +9,7 @@ function Block(props) {
     let compoent = null;
 
     if (headingRegex.test(type)) {
-      console.log("이것은 헤딩입니다 = ", type);
+      compoent = <Heading heading={item} type={type}/>;
     } else if (type === "paragraph") {
       compoent = (
         <Paragraph id={item.id} richTexts={item.paragraph.rich_text} />
