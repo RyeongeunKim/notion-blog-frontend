@@ -26,6 +26,13 @@ const routesConfig = [
             path: ":postId",
             element: <PostDetailPage />,
             loader: postDetailLoader,
+            children: [
+              {
+                path: ":postId",
+                element: <PostDetailPage />,
+                loader: postDetailLoader,
+              },
+            ],
           },
         ],
       },
