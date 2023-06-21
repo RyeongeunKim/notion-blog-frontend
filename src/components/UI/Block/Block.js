@@ -9,7 +9,7 @@ function Block(props) {
     let compoent = null;
 
     if (headingRegex.test(type)) {
-      compoent = <Heading heading={item} type={type}/>;
+      compoent = <Heading heading={item} type={type} />;
     } else if (type === "paragraph") {
       compoent = (
         <Paragraph id={item.id} richTexts={item.paragraph.rich_text} />

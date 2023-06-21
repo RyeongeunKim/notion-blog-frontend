@@ -1,13 +1,24 @@
-import { useRef } from "react";
-
 function Heading(props) {
   const { heading, type } = props;
-  const ref = useRef("");
 
-  console.log(heading[type]);
-  console.log(ref);
+  const plainText = heading[type].rich_text[0].plain_text;
 
-  return <div>헤딩입니당</div>;
+  const getHaeadingText = () => {
+    switch (type) {
+      case "heading_1":
+        return <h1>{plainText}</h1>;
+      case "heading_2":
+        return <h2>{plainText}</h2>;
+      case "heading_3":
+        return <h3>{plainText}</h3>;
+      default:
+        return <div>{plainText}</div>;
+    }
+  };
+
+  const haeadingText = getHaeadingText();
+
+  return haeadingText;
 }
 
 export default Heading;
