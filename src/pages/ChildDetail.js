@@ -1,21 +1,19 @@
 import { Suspense } from "react";
 import { Await, json, defer, useLoaderData } from "react-router-dom";
 
-import PostItem from "../components/posts/PostItem";
-
-function PostDetailPage() {
+function ChildDetailPage() {
   const { blocks } = useLoaderData();
 
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <Await resolve={blocks}>
-        {(loadedPost) => <PostItem blocks={loadedPost} />}
+        {/* {(loadedPost) => <PostItem blocks={loadedPost} />} */}
       </Await>
     </Suspense>
   );
 }
 
-export default PostDetailPage;
+export default ChildDetailPage;
 
 async function loadPost(postId) {
   const block_id = postId;

@@ -1,7 +1,6 @@
-import { Fragment } from "react";
-import Equation from "./RichText/Equation";
-import Mention from "./RichText/Mention";
-import Text from "./RichText/Text";
+import Equation from "./richtext/Equation";
+import Mention from "./richtext/Mention";
+import Text from "./richtext/Text";
 
 function Paragraph(props) {
   const { id, richTexts } = props;

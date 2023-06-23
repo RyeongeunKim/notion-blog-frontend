@@ -1,7 +1,8 @@
-import Paragraph from "./Type/Paragraph";
-import Heading from "./Type/Heading";
-import Image from "./Type/Image";
-import ChildPage from "./Type/ChildPage";
+import Paragraph from "./type/Paragraph";
+import Heading from "./type/Heading";
+import Image from "./type/Image";
+import ChildPage from "./type/ChildPage";
+import NumberedListItem from "./type/NumberedListItem";
 
 function Block(props) {
   const { blocks } = props;
@@ -11,15 +12,14 @@ function Block(props) {
     let compoent = null;
     const headingRegex = new RegExp("heading*");
     if (type === "child_page") {
-      compoent = <ChildPage childPage={item[type]} id={item.id}/>;
+      console.log(item);
+      compoent = <ChildPage childPage={item[type]} id={item.id} />;
     } else if (headingRegex.test(type)) {
       compoent = <Heading heading={item} type={type} />;
     } else if (type === "image") {
       compoent = <Image image={item[type]} />;
-    } else if (type === "paragraph") {
-      compoent = (
-        <Paragraph id={item.id} richTexts={item.paragraph.rich_text} />
-      );
+    } else if (type === "paragraph" || type === "numbered_list_item") {
+      compoent = <Paragraph id={item.id} richTexts={item[type].rich_text} />;
     }
 
     return compoent ? <div key={id}>{compoent}</div> : null;

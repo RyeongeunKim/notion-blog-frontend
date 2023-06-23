@@ -5,6 +5,7 @@ import PostsPage, { loader as postsLoader } from "../pages/Posts";
 import PostDetailPage, {
   loader as postDetailLoader,
 } from "../pages/PostDetail";
+import ChildDetailPage from "../pages/ChildDetail";
 
 const routesConfig = [
   {
@@ -28,8 +29,8 @@ const routesConfig = [
             loader: postDetailLoader,
             children: [
               {
-                path: ":postId",
-                element: <PostDetailPage />,
+                path: ":blockId",
+                element: <ChildDetailPage />,
                 loader: postDetailLoader,
               },
             ],

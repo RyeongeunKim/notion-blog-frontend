@@ -1,4 +1,4 @@
-import Title from "../UI/Page/Title";
+import Title from "./Title";
 
 
 function PostList({ posts }) {

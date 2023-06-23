@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-import Block from "../UI/Block/Block";
+import Block from "../blocks/Block";
 
 function PostItem({ blocks }) {
   const {
