@@ -21,7 +21,7 @@ export default PostsPage;
 async function loadEvents() {
   const database_id = process.env.REACT_APP_NOTION_DATABASE_ID;
 
-  const response = await fetch("http://localhost:3002/posts/" + database_id, {
+  const response = await fetch("http://localhost:8080/posts/" + database_id, {
     method: "POST",
   });
 

@@ -19,8 +19,7 @@ export default PostDetailPage;
 
 async function loadPost(postId) {
   const block_id = postId;
-  const response = await fetch("http://localhost:3002/posts/" + block_id);
-
+  const response = await fetch("http://localhost:8080/posts/" + block_id);
   if (!response.ok) {
     throw json(
       { message: "Could not fetch details for selected post." },
