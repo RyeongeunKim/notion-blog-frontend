@@ -5,7 +5,7 @@ import Text from "./richtext/Text";
 function Paragraph(props) {
   const { id, richTexts } = props;
 
-  const getCompoent = (type, richText) => {
+  const getCompoent = (type, richText, index) => {
     let compoent = null;
 
     if (type === "Mention") {
@@ -16,13 +16,13 @@ function Paragraph(props) {
       compoent = <Text richText={richText} />;
     }
 
-    return compoent ? <div key={id}>{compoent}</div> : null;
+    return compoent ? <div key={`${id}${index}`}>{compoent}</div> : null;
   };
 
   return (
     <>
       {richTexts.length ? (
-        richTexts.map((item) => getCompoent(item.type, item))
+        richTexts.map((item, index) => getCompoent(item.type, item, index))
       ) : (
         <br />
       )}
