@@ -31,7 +31,13 @@ function PostsNavigation() {
   };
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense
+      fallback={
+        <header className={classes.header}>
+          <p>Loading...</p>
+        </header>
+      }
+    >
       <Await resolve={posts}>
         {(loadedEvents) => (
           <header className={classes.header}>
