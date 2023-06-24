@@ -12,33 +12,54 @@ import ChildDetailPage, {
 const routesConfig = [
   {
     path: "/",
-    element: <RootLayout />,
+    id: "posts",
+    element: <PostsRootLayout />,
+    loader: postsLoader,
     children: [
       {
-        index: true,
-        element: <HomePage />,
+        path: ":postId",
+        element: <PostDetailPage />,
+        loader: postDetailLoader,
+        
       },
       {
-        path: "posts",
-        id: "posts",
-        element: <PostsRootLayout />,
-        loader: postsLoader,
-        children: [
-          { index: true, element: <PostsPage /> },
-          {
-            path: ":postId",
-            element: <PostDetailPage />,
-            loader: postDetailLoader,
-          },
-          {
-            path: ":blockId",
-            element: <ChildDetailPage />,
-            loader: childDetailLoader,
-          },
-        ],
+        path: ":blockId",
+        element: <ChildDetailPage />,
+        loader: childDetailLoader,
       },
     ],
   },
 ];
+// const routesConfig = [
+//   {
+//     path: "/",
+//     element: <RootLayout />,
+//     children: [
+//       {
+//         index: true,
+//         element: <HomePage />,
+//       },
+//       {
+//         path: "posts",
+//         id: "posts",
+//         element: <PostsRootLayout />,
+//         loader: postsLoader,
+//         children: [
+//           { index: true, element: <PostsPage /> },
+//           {
+//             path: ":postId",
+//             element: <PostDetailPage />,
+//             loader: postDetailLoader,
+//           },
+//           {
+//             path: ":blockId",
+//             element: <ChildDetailPage />,
+//             loader: childDetailLoader,
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ];
 
 export default routesConfig;
