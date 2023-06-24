@@ -5,13 +5,15 @@ import ChildPage from "../blocks/type/childpage/ChildPage";
 import ListItem from "./type/ListItem";
 import Code from "./type/Code";
 
+import classes from "./Block.module.css";
+
 function Block(props) {
   const { blocks } = props;
   let itemList = [];
 
   const getCompoent = (item, index) => {
     const { id, type } = item;
-    console.log(item);
+    // console.log(item);
     let compoent = null;
     const headingRegex = new RegExp("heading*");
     if (type === "code") {
@@ -46,7 +48,11 @@ function Block(props) {
     return compoent ? <div key={id}>{compoent}</div> : null;
   };
 
-  return <>{blocks.map((item, index) => getCompoent(item, index))}</>;
+  return (
+    <ul className={classes.list}>
+      {blocks.map((item, index) => getCompoent(item, index))}
+    </ul>
+  );
 }
 
 export default Block;
