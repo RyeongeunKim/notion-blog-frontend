@@ -3,6 +3,7 @@ import Heading from "./type/Heading";
 import Image from "./type/Image";
 import ChildPage from "../blocks/type/childpage/ChildPage";
 import ListItem from "./type/ListItem";
+import Code from "./type/Code";
 
 function Block(props) {
   const { blocks } = props;
@@ -10,23 +11,27 @@ function Block(props) {
 
   const getCompoent = (item, index) => {
     const { id, type } = item;
-    // console.log(item);
+    console.log(item);
     let compoent = null;
     const headingRegex = new RegExp("heading*");
-    if (type === "child_page") {
+    if (type === "code") {
+      compoent = <Code id={id} richTexts={item[type].rich_text} />;
+    } else if (type === "child_page") {
       compoent = <ChildPage childPage={item[type]} id={id} />;
     } else if (headingRegex.test(type)) {
       compoent = <Heading heading={item} type={type} />;
     } else if (type === "image") {
       compoent = <Image image={item[type]} />;
-    } else if (type === "quote" || type === "numbered_list_item") {
+    } else if (
+      type === "quote" ||
+      type === "numbered_list_item" ||
+      type === "bulleted_list_item"
+    ) {
       const endCheck =
-        index === blocks.length || blocks[index + 1].type !== type;
+        index === blocks.length || blocks[index + 1]?.type !== type;
 
       if (endCheck) {
-        if (!itemList.length) {
-          itemList.push({ id: id, richTexts: item[type].rich_text });
-        }
+        itemList.push({ id: id, richTexts: item[type].rich_text });
 
         compoent = <ListItem itemList={itemList} type={type} />;
 
