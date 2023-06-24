@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
 
-import Block from "../blocks/Block";
+import Block from "../../Block";
 
-function PostItem({ blocks }) {
+function ChildItem({ blocks }) {
   const {
     state: { title },
   } = useLocation();
@@ -15,4 +15,4 @@ function PostItem({ blocks }) {
   );
 }
 
-export default PostItem;
+export default ChildItem;

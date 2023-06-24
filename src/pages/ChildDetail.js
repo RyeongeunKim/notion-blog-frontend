@@ -1,24 +1,24 @@
 import { Suspense } from "react";
 import { Await, json, defer, useLoaderData } from "react-router-dom";
 
-import PostItem from "../components/posts/PostItem";
+import ChildItem from "../components/blocks/type/childpage/ChildItem";
 
-function PostDetailPage() {
-  const { blocks } = useLoaderData();
+function ChildDetailPage() {
+  const { child } = useLoaderData();
 
   return (
     <Suspense fallback={<p>Loading...</p>}>
-      <Await resolve={blocks}>
-        {(loadedPost) => <PostItem blocks={loadedPost} />}
+      <Await resolve={child}>
+        {(loadedPost) => <ChildItem blocks={loadedPost} />}
       </Await>
     </Suspense>
   );
 }
 
-export default PostDetailPage;
+export default ChildDetailPage;
 
-async function loadPost(postId) {
-  const block_id = postId;
+async function loadPost(blockId) {
+  const block_id = blockId;
   const response = await fetch("http://localhost:3002/posts/" + block_id);
 
   if (!response.ok) {
@@ -35,9 +35,9 @@ async function loadPost(postId) {
 }
 
 export async function loader({ request, params }) {
-  let id = params.postId;
+  let id = params.blockId;
 
   return defer({
-    blocks: await loadPost(id),
+    child: await loadPost(id),
   });
 }

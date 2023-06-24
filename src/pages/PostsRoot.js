@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import PostsNavigation from "../components/Posts/PostsNavigation";
+import PostsNavigation from "../components/posts/PostsNavigation";
 
 function PostsRootLayout() {
   return (
