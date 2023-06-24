@@ -1,7 +1,7 @@
 import Paragraph from "./type/Paragraph";
 import Heading from "./type/Heading";
 import Image from "./type/Image";
-import ChildPage from "./type/ChildPage";
+import ChildPage from "../blocks/type/childpage/ChildPage";
 import NumberedListItem from "./type/NumberedListItem";
 
 function Block(props) {
@@ -12,7 +12,6 @@ function Block(props) {
     let compoent = null;
     const headingRegex = new RegExp("heading*");
     if (type === "child_page") {
-      console.log(item);
       compoent = <ChildPage childPage={item[type]} id={item.id} />;
     } else if (headingRegex.test(type)) {
       compoent = <Heading heading={item} type={type} />;

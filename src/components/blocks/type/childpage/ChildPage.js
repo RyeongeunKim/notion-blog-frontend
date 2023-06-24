@@ -4,7 +4,7 @@ function ChildPage(props) {
   const { childPage, id } = props;
   const title = childPage.title;
   return (
-    <Link to={`${id}`} state={{ title }}>
+    <Link to={`/posts/${id}`} state={{ title }}>
       {title}
     </Link>
   );
