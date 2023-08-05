@@ -1,11 +1,6 @@
 import PostsRootLayout from "../pages/PostsRoot";
 import { loader as postsLoader } from "../pages/Posts";
-import PostDetailPage, {
-  loader as postDetailLoader,
-} from "../pages/PostDetail";
-import ChildDetailPage, {
-  loader as childDetailLoader,
-} from "../pages/ChildDetail";
+import PostDetailPage from "../pages/PostDetail";
 
 const routesConfig = [
   {
@@ -15,48 +10,17 @@ const routesConfig = [
     loader: postsLoader,
     children: [
       {
-        path: ":postId",
+        path: "post",
         element: <PostDetailPage />,
-        loader: postDetailLoader,
-      },
-      {
-        path: ":blockId",
-        element: <ChildDetailPage />,
-        loader: childDetailLoader,
+        children: [
+          {
+            path: "detail",
+            element: <PostDetailPage />,
+          },
+        ],
       },
     ],
   },
 ];
-// const routesConfig = [
-//   {
-//     path: "/",
-//     element: <RootLayout />,
-//     children: [
-//       {
-//         index: true,
-//         element: <HomePage />,
-//       },
-//       {
-//         path: "posts",
-//         id: "posts",
-//         element: <PostsRootLayout />,
-//         loader: postsLoader,
-//         children: [
-//           { index: true, element: <PostsPage /> },
-//           {
-//             path: ":postId",
-//             element: <PostDetailPage />,
-//             loader: postDetailLoader,
-//           },
-//           {
-//             path: ":blockId",
-//             element: <ChildDetailPage />,
-//             loader: childDetailLoader,
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// ];
 
 export default routesConfig;

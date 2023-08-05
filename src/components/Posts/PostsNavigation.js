@@ -1,12 +1,18 @@
-import { Suspense } from "react";
+import { Suspense, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { Await, useLoaderData } from "react-router-dom";
 import Title from "./Title";
-
 import classes from "./PostsNavigation.module.css";
+import PostContext from "../../store/post-context";
 
 function PostsNavigation() {
+  const postCtx = useContext(PostContext);
+
   const { posts } = useLoaderData();
+
+  const changePostIdHandler = (postId) => {
+    postCtx.changePostId(postId);
+  };
 
   return (
     <Suspense
@@ -24,10 +30,10 @@ function PostsNavigation() {
                 {loadedEvents.map((loaded) => (
                   <li key={loaded.id}>
                     <NavLink
-                      to={`${loaded.id}`}
+                      to={"post"}
                       className={classes.navLink}
                       end
-                      onClick={() => console.log("Link clicked!", loaded.id)}
+                      onClick={() => changePostIdHandler(loaded.id)}
                     >
                       {loaded[loaded.type]}
                       <Title loaded={loaded} />

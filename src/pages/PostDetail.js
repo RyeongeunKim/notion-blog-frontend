@@ -1,42 +1,30 @@
-import { Suspense } from "react";
-import { Await, json, defer, useLoaderData } from "react-router-dom";
-
+import { useContext, useEffect, useState } from "react";
+import PostContext from "../store/post-context";
 import PostItem from "../components/posts/PostItem";
 
 function PostDetailPage() {
-  const { blocks } = useLoaderData();
+  const { postId } = useContext(PostContext);
+  const [postList, setPostList] = useState([]);
+
+  useEffect(() => {
+    if (!postId) return;
+
+    (async () => {
+      const response = await fetch("http://localhost:8080/posts/" + postId);
+      if (!response.ok) {
+        console.error("Could not fetch details for selected post.");
+      } else {
+        const { results } = await response.json();
+        setPostList(results);
+      }
+    })();
+  }, [postId]);
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <Await resolve={blocks}>
-        {(loadedPost) => <PostItem blocks={loadedPost} />}
-      </Await>
-    </Suspense>
+    <div>
+      {postId && postList.length ? <PostItem blocks={postList} /> : null}
+    </div>
   );
 }
 
 export default PostDetailPage;
-
-async function loadPost(postId) {
-  const block_id = postId;
-  const response = await fetch("http://localhost:8080/posts/" + block_id);
-  if (!response.ok) {
-    throw json(
-      { message: "Could not fetch details for selected post." },
-      {
-        status: 500,
-      }
-    );
-  } else {
-    const resData = await response.json();
-    return resData.results;
-  }
-}
-
-export async function loader({ request, params }) {
-  let id = params.postId;
-
-  return defer({
-    blocks: await loadPost(id),
-  });
-}
