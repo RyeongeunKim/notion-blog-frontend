@@ -1,34 +1,12 @@
-import { useState } from "react";
 import { Suspense } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  defer,
-  Await,
-  json,
-  useRouteLoaderData,
-  useLoaderData,
-} from "react-router-dom";
+import { Await, useLoaderData } from "react-router-dom";
+import Title from "./Title";
 
 import classes from "./PostsNavigation.module.css";
 
 function PostsNavigation() {
   const { posts } = useLoaderData();
-
-  const getTitle = (loaded) => {
-    let resultTitle = "";
-    const { properties } = loaded;
-
-    for (const key in properties) {
-      if (properties[key].type === "title") {
-        const [title] = properties[key].title;
-        if (title?.plain_text) {
-          resultTitle = title.plain_text;
-        }
-      }
-    }
-
-    return resultTitle;
-  };
 
   return (
     <Suspense
@@ -47,13 +25,12 @@ function PostsNavigation() {
                   <li key={loaded.id}>
                     <NavLink
                       to={`${loaded.id}`}
-                      className={({ isActive }) =>
-                        isActive ? classes.active : undefined
-                      }
+                      className={classes.navLink}
                       end
+                      onClick={() => console.log("Link clicked!", loaded.id)}
                     >
                       {loaded[loaded.type]}
-                      {getTitle(loaded)}
+                      <Title loaded={loaded} />
                     </NavLink>
                   </li>
                 ))}
