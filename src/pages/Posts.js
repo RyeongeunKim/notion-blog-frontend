@@ -8,7 +8,7 @@ function PostsPage() {
   const { posts } = useRouteLoaderData("posts");
 
   return (
-    <Suspense fallback={<p>Loading....</p>}>
+    <Suspense fallback={<p>Loading...</p>}>
       <Await resolve={posts}>
         {(loadedEvents) => <PostList posts={loadedEvents} />}
       </Await>
