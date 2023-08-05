@@ -1,7 +1,5 @@
-import RootLayout from "../pages/Root";
-import HomePage from "../pages/Home";
 import PostsRootLayout from "../pages/PostsRoot";
-import PostsPage, { loader as postsLoader } from "../pages/Posts";
+import { loader as postsLoader } from "../pages/Posts";
 import PostDetailPage, {
   loader as postDetailLoader,
 } from "../pages/PostDetail";
@@ -20,7 +18,6 @@ const routesConfig = [
         path: ":postId",
         element: <PostDetailPage />,
         loader: postDetailLoader,
-        
       },
       {
         path: ":blockId",
