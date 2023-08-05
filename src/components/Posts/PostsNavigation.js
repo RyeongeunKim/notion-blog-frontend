@@ -1,33 +1,17 @@
-import { useState } from "react";
-import { Suspense } from "react";
+import { Suspense, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  defer,
-  Await,
-  json,
-  useRouteLoaderData,
-  useLoaderData,
-} from "react-router-dom";
-
+import { Await, useLoaderData } from "react-router-dom";
+import Title from "./Title";
 import classes from "./PostsNavigation.module.css";
+import PostContext from "../../store/post-context";
 
 function PostsNavigation() {
+  const postCtx = useContext(PostContext);
+
   const { posts } = useLoaderData();
 
-  const getTitle = (loaded) => {
-    let resultTitle = "";
-    const { properties } = loaded;
-
-    for (const key in properties) {
-      if (properties[key].type === "title") {
-        const [title] = properties[key].title;
-        if (title?.plain_text) {
-          resultTitle = title.plain_text;
-        }
-      }
-    }
-
-    return resultTitle;
+  const changePostIdHandler = (postId) => {
+    postCtx.changePostId(postId);
   };
 
   return (
@@ -46,14 +30,13 @@ function PostsNavigation() {
                 {loadedEvents.map((loaded) => (
                   <li key={loaded.id}>
                     <NavLink
-                      to={`${loaded.id}`}
-                      className={({ isActive }) =>
-                        isActive ? classes.active : undefined
-                      }
+                      to={"post"}
+                      className={classes.navLink}
                       end
+                      onClick={() => changePostIdHandler(loaded.id)}
                     >
                       {loaded[loaded.type]}
-                      {getTitle(loaded)}
+                      <Title loaded={loaded} />
                     </NavLink>
                   </li>
                 ))}
