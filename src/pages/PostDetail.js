@@ -18,7 +18,8 @@ function PostDetailPage() {
     const fetchPostDetails = async () => {
       try {
         // console.log("API 호출");
-        const response = await fetch("http://localhost:8080/posts/" + postId);
+        const url = process.env.REACT_APP_LOCAL_URL;
+        const response = await fetch(`${url}/posts/` + postId);
         if (!response.ok) {
           console.error("Could not fetch details for selected post.");
         } else {
