@@ -1,5 +1,11 @@
 import { Suspense } from "react";
-import { defer, Await, json, useRouteLoaderData, useLoaderData } from "react-router-dom";
+import {
+  defer,
+  Await,
+  json,
+  useRouteLoaderData,
+  useLoaderData,
+} from "react-router-dom";
 
 import PostList from "../components/posts/PostList";
 
@@ -20,8 +26,9 @@ export default PostsPage;
 
 async function loadEvents() {
   const database_id = process.env.REACT_APP_NOTION_DATABASE_ID;
+  const url = process.env.REACT_APP_LOCAL_URL;
 
-  const response = await fetch("http://localhost:8080/posts/" + database_id, {
+  const response = await fetch(`${url}/posts/` + database_id, {
     method: "POST",
   });
 

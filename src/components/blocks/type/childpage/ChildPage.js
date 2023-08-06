@@ -15,7 +15,7 @@ function ChildPage(props) {
   return (
     <li key={id} className={classes.item}>
       <Link
-        to={`detail`}
+        to={`/post/detail`}
         state={{ title }}
         onClick={() => changePostIdHandler(id)}
       >

@@ -11,46 +11,41 @@ function Block(props) {
   const { blocks } = props;
   let itemList = [];
 
-  const getCompoent = (item, index) => {
-    const { id, type } = item;
-    // console.log(item);
-    let compoent = null;
-    const headingRegex = new RegExp("heading*");
-    if (type === "code") {
-      compoent = <Code id={id} richTexts={item[type].rich_text} />;
-    } else if (type === "child_page") {
-      compoent = <ChildPage childPage={item[type]} id={id} />;
-    } else if (headingRegex.test(type)) {
-      compoent = <Heading heading={item} type={type} />;
-    } else if (type === "image") {
-      compoent = <Image image={item[type]} />;
-    } else if (
-      type === "quote" ||
-      type === "numbered_list_item" ||
-      type === "bulleted_list_item"
-    ) {
-      const endCheck =
-        index === blocks.length || blocks[index + 1]?.type !== type;
-
-      if (endCheck) {
-        itemList.push({ id: id, richTexts: item[type].rich_text });
-
-        compoent = <ListItem itemList={itemList} type={type} />;
-
-        itemList = [];
-      } else {
-        itemList.push({ id: id, richTexts: item[type].rich_text });
-      }
-    } else if (type === "paragraph") {
-      compoent = <Paragraph id={id} richTexts={item[type].rich_text} />;
-    }
-
-    return compoent ? <div key={id}>{compoent}</div> : null;
-  };
-
   return (
     <ul className={classes.list}>
-      {blocks.map((item, index) => getCompoent(item, index))}
+      {blocks.map((item, index) => {
+        const { id, type } = item;
+        let component = null;
+        const headingRegex = new RegExp("heading*");
+
+        if (type === "code") {
+          component = <Code id={id} richTexts={item[type].rich_text} />;
+        } else if (type === "child_page") {
+          component = <ChildPage childPage={item[type]} id={id} />;
+        } else if (headingRegex.test(type)) {
+          component = <Heading heading={item} type={type} />;
+        } else if (type === "image") {
+          component = <Image image={item[type]} />;
+        } else if (
+          type === "quote" ||
+          type === "numbered_list_item" ||
+          type === "bulleted_list_item"
+        ) {
+          const endCheck =
+            index === blocks.length - 1 || blocks[index + 1].type !== type;
+          itemList.push({ id: id, richTexts: item[type].rich_text });
+
+          if (endCheck) {
+            component = <ListItem itemList={itemList} type={type} />;
+
+            itemList = [];
+          }
+        } else if (type === "paragraph") {
+          component = <Paragraph id={id} richTexts={item[type].rich_text} />;
+        }
+
+        return component ? <div key={id}>{component}</div> : null;
+      })}
     </ul>
   );
 }
