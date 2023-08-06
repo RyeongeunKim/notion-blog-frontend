@@ -1,4 +1,4 @@
-import PostsRootLayout from "../pages/PostsRoot";
+import RootLayout from "../pages/Root";
 import { loader as postsLoader } from "../pages/Posts";
 import PostDetailPage from "../pages/PostDetail";
 
@@ -6,7 +6,7 @@ const routesConfig = [
   {
     path: "/",
     id: "posts",
-    element: <PostsRootLayout />,
+    element: <RootLayout />,
     loader: postsLoader,
     children: [
       {

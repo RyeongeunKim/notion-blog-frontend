@@ -6,7 +6,7 @@ import PostItem from "../components/posts/PostItem";
 function PostDetailPage() {
   const { postId } = useContext(PostContext);
   const { state } = useLocation();
-  const pageTitle = state?.title ? state.title : "";
+  const pageTitle = state?.title || "";
   const [postDetails, setPostDetails] = useState({
     title: "",
     postList: [],
