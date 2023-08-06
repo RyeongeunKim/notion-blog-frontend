@@ -1,7 +1,7 @@
 import Paragraph from "./type/Paragraph";
 import Heading from "./type/Heading";
 import Image from "./type/Image";
-import ChildPage from "../blocks/type/childpage/ChildPage";
+import ChildPage from "../blocks/type/child-page/ChildPage";
 import ListItem from "./type/ListItem";
 import Code from "./type/Code";
 

@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 
-import PostsNavigation from "../components/posts/PostsNavigation";
+import MainNavigation from "../components/posts/MainNavigation";
 
 function PostsRootLayout() {
   return (
     <>
-      <PostsNavigation />
+      <MainNavigation />
       <Outlet />
     </>
   );
